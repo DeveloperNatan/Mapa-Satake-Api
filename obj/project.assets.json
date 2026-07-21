@@ -3256,19 +3256,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Natan\\.nuget\\packages\\": {}
+    "/home/inspetor/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Natan\\code\\mapa-asp.net\\mapa-asp.net.csproj",
+      "projectUniqueName": "/home/inspetor/Developer/Mapa-Satake-Api/mapa-asp.net.csproj",
       "projectName": "mapa-asp.net",
-      "projectPath": "C:\\Users\\Natan\\code\\mapa-asp.net\\mapa-asp.net.csproj",
-      "packagesPath": "C:\\Users\\Natan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Natan\\code\\mapa-asp.net\\obj\\",
+      "projectPath": "/home/inspetor/Developer/Mapa-Satake-Api/mapa-asp.net.csproj",
+      "packagesPath": "/home/inspetor/.nuget/packages/",
+      "outputPath": "/home/inspetor/Developer/Mapa-Satake-Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Natan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/inspetor/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -3340,7 +3340,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.316/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/inspetor/.dotnet/sdk/9.0.315/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
