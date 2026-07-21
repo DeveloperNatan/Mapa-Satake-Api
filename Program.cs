@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using mapa_asp.net.Data;
+using mapa_asp.net.Dto;
+using mapa_asp.net.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// OpenAPI
+// OpenAPI + Swagger
 builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // CORS
 builder.Services.AddCors(options =>
@@ -31,15 +35,30 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
 app.UseCors("MyPolicyCors");
 
-app.MapGet("/create", () =>
+app.MapPost("/create", async (MaquinaDto dataDto, AppDbContext appDbContext) =>
 {
-    return Results.Ok("API running");
-});
+    var maquina = new Maquina
+    {
+        Patrimonio = dataDto.Patrimonio,
+        Setor = dataDto.Setor,
+        Descricao = dataDto.Descricao,
+        X = dataDto.X,
+        Y = dataDto.Y
+    };
+
+    appDbContext.Maquinas.Add(maquina);
+    await appDbContext.SaveChangesAsync();
+
+    return Results.Ok(new { message = "Maquina criada com sucesso!" });
+})
+.WithName("CreateMaquina")
+.WithOpenApi();
 
 app.Run();
