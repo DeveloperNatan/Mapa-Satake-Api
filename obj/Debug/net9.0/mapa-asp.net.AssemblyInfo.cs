@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mapa-asp.net")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ed6bb67ef75cb7084c9c289ccd6842a4e2eb714")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+700f6eb16fe90ec6e38679217453a35ff96376df")]
 [assembly: System.Reflection.AssemblyProductAttribute("mapa-asp.net")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mapa-asp.net")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

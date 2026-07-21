@@ -50,7 +50,9 @@ app.MapPost("/create", async (MaquinaDto dataDto, AppDbContext appDbContext) =>
         Setor = dataDto.Setor,
         Descricao = dataDto.Descricao,
         X = dataDto.X,
-        Y = dataDto.Y
+        Y = dataDto.Y,
+        CreatedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow
     };
 
     appDbContext.Maquinas.Add(maquina);
