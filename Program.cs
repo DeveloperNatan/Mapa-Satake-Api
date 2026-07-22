@@ -75,4 +75,11 @@ app.MapGet("/api/maquinas", async (AppDbContext appDbContext) =>
     .WithName("getmaquina")
     .WithOpenApi();
 
+
+app.MapDelete("/api/machines", async (AppDbContext appDbContext) =>
+{
+
+});
+    
+
 app.Run();
