@@ -16,15 +16,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyPolicyCors", policy =>
         policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
     );
 });
 
 // Connection database
-var connectionString =
-    Environment.GetEnvironmentVariable("DefaultConnection")
-    ?? builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -42,25 +40,39 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors("MyPolicyCors");
 
-app.MapPost("/create", async (MaquinaDto dataDto, AppDbContext appDbContext) =>
-{
-    var maquina = new Maquina
+app.MapPost("/api/maquinas", async (MaquinaDto dataDto, AppDbContext appDbContext) =>
     {
-        Patrimonio = dataDto.Patrimonio,
-        Setor = dataDto.Setor,
-        Descricao = dataDto.Descricao,
-        X = dataDto.X,
-        Y = dataDto.Y,
-        CreatedAt = DateTime.UtcNow,
-        UpdatedAt = DateTime.UtcNow
-    };
+        var maquina = new Maquina
+        {
+            Patrimonio = dataDto.Patrimonio,
+            Setor = dataDto.Setor,
+            Descricao = dataDto.Descricao,
+            X = dataDto.X,
+            Y = dataDto.Y,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
 
-    appDbContext.Maquinas.Add(maquina);
-    await appDbContext.SaveChangesAsync();
+        appDbContext.Maquinas.Add(maquina);
+        await appDbContext.SaveChangesAsync();
 
-    return Results.Ok(new { message = "Maquina criada com sucesso!" });
-})
-.WithName("CreateMaquina")
-.WithOpenApi();
+        return Results.Ok(new { message = "Maquina criada com sucesso!" });
+    }).WithName("postmaquina")
+    .WithOpenApi();
+
+
+app.MapGet("/api/maquinas", async (AppDbContext appDbContext) =>
+    {
+        var maquinas = await appDbContext.Maquinas.ToListAsync();
+
+        if (!maquinas.Any())
+        {
+            return Results.NotFound(new { message = "Nenhuma maquina cadastrada!" });
+        }
+
+        return Results.Ok(maquinas);
+    })
+    .WithName("getmaquina")
+    .WithOpenApi();
 
 app.Run();
